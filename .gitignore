@@ -1,0 +1,18 @@
+# Secrets
+.env
+
+# Runtime data
+chroma_db/
+uploads/*
+!uploads/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+venv/
+
+# OS
+.DS_Store
