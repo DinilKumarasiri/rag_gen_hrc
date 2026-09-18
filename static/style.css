@@ -1,0 +1,195 @@
+:root {
+  --bg: #f7f7f8;
+  --card-bg: #ffffff;
+  --border: #e0e0e6;
+  --text: #1f2328;
+  --muted: #6b7280;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --success-bg: #ecfdf3;
+  --success-text: #05603a;
+  --error-bg: #fef2f2;
+  --error-text: #991b1b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+header {
+  padding: 2rem 1.5rem 1rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.75rem;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: -0.5rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.row:last-child {
+  margin-bottom: 0;
+}
+
+label {
+  font-size: 0.85rem;
+  color: var(--muted);
+  min-width: 100px;
+}
+
+input[type="text"],
+input[type="file"],
+select {
+  flex: 1;
+  min-width: 180px;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: white;
+  color: var(--text);
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: var(--accent);
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.log {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.log li {
+  padding: 0.25rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.log li:first-child {
+  border-top: none;
+}
+
+.answer-box {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.answer-box h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.citations {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.citation-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.citation-card .source-line {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.citation-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.status {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.status-success {
+  background: var(--success-bg);
+  color: var(--success-text);
+}
+
+.status-error {
+  background: var(--error-bg);
+  color: var(--error-text);
+}
+
+.hidden {
+  display: none;
+}

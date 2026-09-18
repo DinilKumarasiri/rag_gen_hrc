@@ -29,17 +29,30 @@ def store(tmp_path):
     return VectorStore(persist_dir=str(tmp_path / "chroma_db"))
 
 
+def _llm_factory_that_must_not_be_called():
+    def factory():
+        raise AssertionError(
+            "get_llm() factory was called even though no relevant chunks "
+            "were found — the LLM must never be invoked on the no-match path."
+        )
+
+    return factory
+
+
 def test_answer_question_on_empty_collection_never_calls_llm(store):
     embedder = FakeEmbeddingProvider({"what is the pto policy?": [1.0, 0.0]})
-    llm = FakeLLMProvider()
 
     result = answer_question(
-        "what is the pto policy?", "docs", store, embedder, llm, top_k=4
+        "what is the pto policy?",
+        "docs",
+        store,
+        embedder,
+        _llm_factory_that_must_not_be_called(),
+        top_k=4,
     )
 
     assert result["answer"] == NO_MATCH_ANSWER
     assert result["citations"] == []
-    assert llm.calls == []
 
 
 def test_answer_question_below_threshold_never_calls_llm(store):
@@ -50,15 +63,18 @@ def test_answer_question_below_threshold_never_calls_llm(store):
         embeddings=[[0.0, 1.0]],
     )
     embedder = FakeEmbeddingProvider({"what is the pto policy?": [1.0, 0.0]})
-    llm = FakeLLMProvider()
 
     result = answer_question(
-        "what is the pto policy?", "docs", store, embedder, llm, top_k=4
+        "what is the pto policy?",
+        "docs",
+        store,
+        embedder,
+        _llm_factory_that_must_not_be_called(),
+        top_k=4,
     )
 
     assert result["answer"] == NO_MATCH_ANSWER
     assert result["citations"] == []
-    assert llm.calls == []
 
 
 def test_answer_question_with_relevant_hit_calls_llm_and_returns_citations(store):
@@ -72,7 +88,7 @@ def test_answer_question_with_relevant_hit_calls_llm_and_returns_citations(store
     llm = FakeLLMProvider()
 
     result = answer_question(
-        "what is the pto carryover cap?", "docs", store, embedder, llm, top_k=4
+        "what is the pto carryover cap?", "docs", store, embedder, lambda: llm, top_k=4
     )
 
     assert "5 days" in result["answer"]

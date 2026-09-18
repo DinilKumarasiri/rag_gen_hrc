@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RAG Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>RAG Generator</h1>
+    <p class="subtitle">Upload documents, then ask grounded, cited questions about them.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>1. Collection</h2>
+      <div class="row">
+        <label for="collection-select">Use existing</label>
+        <select id="collection-select">
+          <option value="" disabled selected>&mdash; select a collection &mdash;</option>
+          {% for name in collections %}
+          <option value="{{ name }}">{{ name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="row">
+        <label for="new-collection-name">Or create new</label>
+        <input type="text" id="new-collection-name" placeholder="e.g. acme-hr-docs" maxlength="63">
+        <button id="create-collection-btn">Create</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2. Upload documents</h2>
+      <p class="hint">Supported formats: PDF, TXT, MD, DOCX</p>
+      <div class="row">
+        <input type="file" id="file-input" accept=".pdf,.txt,.md,.docx">
+        <button id="upload-btn">Upload</button>
+      </div>
+      <ul id="upload-log" class="log"></ul>
+    </section>
+
+    <section class="card">
+      <h2>3. Ask a question</h2>
+      <div class="row">
+        <input type="text" id="question-input" placeholder="Ask something about the uploaded documents...">
+        <button id="ask-btn">Ask</button>
+      </div>
+      <div id="answer-box" class="answer-box hidden">
+        <h3>Answer</h3>
+        <p id="answer-text"></p>
+        <div id="citations" class="citations"></div>
+      </div>
+    </section>
+
+    <div id="status-message" class="status hidden"></div>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
