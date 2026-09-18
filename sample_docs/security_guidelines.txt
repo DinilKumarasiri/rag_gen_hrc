@@ -1,0 +1,36 @@
+Acme Corp — Information Security Guidelines
+
+1. Password Requirements
+All employee accounts must use passwords of at least 14 characters,
+combining upper and lower case letters, numbers, and symbols. Passwords
+must be rotated every 180 days. Reuse of the previous 5 passwords is
+prohibited.
+
+2. Multi-Factor Authentication
+MFA is mandatory for all systems that handle customer data, source code,
+or financial records. Acceptable MFA methods include hardware security
+keys and authenticator apps. SMS-based MFA is discouraged but permitted
+as a fallback.
+
+3. Device Policy
+Company laptops must have full-disk encryption enabled and automatic
+screen lock after 5 minutes of inactivity. Personal devices used to
+access company email must be enrolled in the mobile device management
+(MDM) system.
+
+4. Data Classification
+Data is classified as Public, Internal, Confidential, or Restricted.
+Restricted data (e.g. customer PII, payment information) may only be
+stored in approved, encrypted systems and must never be emailed
+unencrypted.
+
+5. Incident Reporting
+Any suspected security incident — phishing email, lost device, unusual
+account activity — must be reported to security@acmecorp.example within
+1 hour of discovery. Do not attempt to investigate independently.
+
+6. Third-Party Access
+Vendors requiring access to internal systems must go through a security
+review and sign a data processing agreement before credentials are
+issued. Vendor access is reviewed quarterly and revoked immediately upon
+contract termination.
