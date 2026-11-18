@@ -157,6 +157,8 @@ def handle_server_error(error):
 
 def test_method():
     print("malisha")
+def test_method2(modi):
+    print(modi)
 
 if __name__ == "__main__":
     app.run(debug=True)
