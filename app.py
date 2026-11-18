@@ -155,6 +155,8 @@ def handle_server_error(error):
     app.logger.exception("Unhandled server error", exc_info=error)
     return jsonify({"error": "An unexpected server error occurred."}), 500
 
+def test_method2(modi):
+    print(modi)
 
 if __name__ == "__main__":
     app.run(debug=True)
